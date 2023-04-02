@@ -1,0 +1,26 @@
+{
+    "test" : "تجربة",
+    "language" : "اللغة",
+    "attendance" : "تسجيل الحضور",
+    "addAthlete" : "لاعب جديد", 
+    "searchAathletes" : "بحث عن لاعب",
+    "name" : "الاسم",
+    "phone" : "رقم التليفون",
+    "paymentDate": "تاريخ الدفع",
+    "paid" : "المدفوع",
+    "coach" : "اسم المدرب",
+    "add" : "اضافة",
+    "firstName" : "الاسم الاول",
+    "lastName" : "اسم العائلة",
+    "id" : "الكود",
+    "search" : "ابحث",
+    "invalidName" : "برجاء ادخال الاسم",
+    "invalidPhone" : "رقم الهاتف خاطئ",
+    "invalidQuntity" : "برجاء ادخال قيمة صحيحة",
+    "invalidDate" : "برجاء ادخال تاريخ صحيح",
+    "edit" : "تعديل",
+    "delete" : "حذف",
+    "cancel" : "الغاء",
+    "save" : "حفظ"
+
+}
