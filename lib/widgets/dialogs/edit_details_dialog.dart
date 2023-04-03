@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../../model/athletes.dart';
 import '../../model/boxes.dart';
-import '../../search_athletes.dart';
+import '../../screens/view_athletes_screen.dart';
 import '../custom_textfield.dart';
 
 Future<dynamic> editDetailsDialog(

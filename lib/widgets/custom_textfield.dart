@@ -43,7 +43,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
           }
 
           if (widget.isNumber == true) {
-            if (value == null || value.isEmpty) {
+            if (value == null || value.isEmpty || value.length > 11) {
               return "invalidPhone".tr();
             }
             return null;

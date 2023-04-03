@@ -3,10 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:fx3/model/athletes.dart';
 import 'package:fx3/model/boxes.dart';
 import 'package:fx3/restart.dart';
-import 'package:fx3/search_athletes.dart';
+import 'package:fx3/screens/view_athletes_screen.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 import '../add_athletes.dart';
+import '../widgets/search_widget.dart';
 
 const List<String> list = <String>['Arabic', 'English'];
 
@@ -30,7 +31,7 @@ class _HomeScreenState extends State<HomeScreen> {
         body: const TabBarView(children: [
           Text('tab1'),
           AddAthletes(),
-          SearchAthletes(),
+          ViewAthletes(),
         ]),
       ),
     );
@@ -93,6 +94,14 @@ class _HomeScreenState extends State<HomeScreen> {
   AppBar appBar(BuildContext context) {
     return AppBar(
       title: Text(widget.title),
+      actions: [
+        IconButton(
+          icon: const Icon(Icons.search),
+          onPressed: () {
+            showSearch(context: context, delegate: SearchWidget());
+          },
+        )
+      ],
       bottom: TabBar(tabs: [
         Tab(
           icon: const Icon(Icons.person),

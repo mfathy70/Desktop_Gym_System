@@ -1,25 +1,23 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:fx3/screens/search_screen.dart';
 import 'package:fx3/widgets/custom_textfield.dart';
+import 'package:fx3/widgets/details_card.dart';
 import 'package:fx3/widgets/dialogs/details_dialog.dart';
 import 'package:fx3/widgets/dialogs/edit_details_dialog.dart';
 import 'package:fx3/widgets/search_widget.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import '../model/athletes.dart';
+import '../model/boxes.dart';
 
-import 'model/athletes.dart';
-import 'model/boxes.dart';
-import 'widgets/search_screen_button.dart';
-
-class SearchAthletes extends StatefulWidget {
-  const SearchAthletes({super.key});
+class ViewAthletes extends StatefulWidget {
+  const ViewAthletes({super.key});
 
   @override
-  State<SearchAthletes> createState() => _SearchAthletesState();
+  State<ViewAthletes> createState() => _ViewAthletesState();
 }
 
-class _SearchAthletesState extends State<SearchAthletes> {
+class _ViewAthletesState extends State<ViewAthletes> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,7 +33,6 @@ class _SearchAthletesState extends State<SearchAthletes> {
 
 Widget buildContent(BuildContext context, List<Athletes> athletes) {
   ScrollController scrollController = ScrollController();
-  TextEditingController searchController = TextEditingController();
 
   if (athletes.isEmpty) {
     return const Center(
@@ -47,28 +44,7 @@ Widget buildContent(BuildContext context, List<Athletes> athletes) {
   } else {
     return Column(
       children: [
-        SearchScreenButton(searchController: searchController),
-        const SizedBox(height: 12),
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Card(
-            child: Padding(
-              padding: const EdgeInsets.all(24.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  SizedBox(width: 60, child: CardText(text: "id".tr())),
-                  SizedBox(width: 150, child: CardText(text: "name".tr())),
-                  SizedBox(width: 120, child: CardText(text: "phone".tr())),
-                  SizedBox(
-                      width: 120, child: CardText(text: "paymentDate".tr())),
-                  SizedBox(width: 120, child: CardText(text: "paid".tr())),
-                  SizedBox(width: 100, child: CardText(text: "coach".tr())),
-                ],
-              ),
-            ),
-          ),
-        ),
+        const DetailsCard(),
         Expanded(
           child: Scrollbar(
             controller: scrollController,

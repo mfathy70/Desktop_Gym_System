@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:fx3/model/boxes.dart';
 
 import '../../model/athletes.dart';
-import '../../search_athletes.dart';
+import '../../screens/view_athletes_screen.dart';
 import 'edit_details_dialog.dart';
 
 Future<dynamic> detailsDialog(BuildContext context, Athletes athlete, index) {

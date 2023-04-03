@@ -1,58 +1,105 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:fx3/model/boxes.dart';
-import 'package:fx3/provider/search_provider.dart';
+import 'package:fx3/model/athletes.dart';
+import 'package:fx3/screens/view_athletes_screen.dart';
 import 'package:hive/hive.dart';
-import 'package:provider/provider.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
-class SearchWidget extends StatefulWidget {
-  const SearchWidget({super.key});
+import 'details_card.dart';
+
+class SearchWidget extends SearchDelegate<Athletes> {
+  @override
+  ThemeData appBarTheme(BuildContext context) {
+    return Theme.of(context).copyWith(
+        appBarTheme: const AppBarTheme(
+          color: Colors.black12,
+        ),
+        inputDecorationTheme: const InputDecorationTheme(
+          enabledBorder: InputBorder.none,
+          focusedBorder: InputBorder.none,
+        ));
+  }
 
   @override
-  State<SearchWidget> createState() => _SearchWidgetState();
+  List<Widget> buildActions(BuildContext context) {
+    return [
+      IconButton(
+        icon: Icon(Icons.clear),
+        onPressed: () {
+          query = '';
+        },
+      ),
+    ];
+  }
+
+  @override
+  Widget buildLeading(BuildContext context) {
+    return IconButton(
+      icon: Icon(Icons.arrow_back),
+      onPressed: () {
+        Navigator.of(context)..pop();
+      },
+    );
+  }
+
+  @override
+  Widget buildResults(BuildContext context) {
+    return SearchFinder(query: query);
+  }
+
+  @override
+  Widget buildSuggestions(BuildContext context) {
+    return SearchFinder(query: query);
+  }
 }
 
-class _SearchWidgetState extends State<SearchWidget> {
-  TextEditingController searchController = TextEditingController();
+class SearchFinder extends StatelessWidget {
+  final String query;
 
+  const SearchFinder({Key? key, required this.query}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return Container(
-        alignment: Alignment.center,
-        padding: const EdgeInsets.all(10),
-        color: Colors.blue,
-        child: Row(
-          children: [
-            const SizedBox(width: 12),
-            SizedBox(
-              width: MediaQuery.of(context).size.width / 1.03,
-              height: MediaQuery.of(context).size.height / 13,
-              child: TextField(
-                style:
-                    const TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
-                cursorColor: Colors.black,
-                controller: searchController,
-                decoration: InputDecoration(
-                  contentPadding: EdgeInsets.symmetric(horizontal: 20),
-                  filled: true,
-                  fillColor: Colors.white,
-                  hintText: "search".tr(),
-                  suffixIconColor: Colors.black54,
-                  suffixIcon: IconButton(
-                      onPressed: () {},
-                      icon: const Icon(Icons.search, color: Colors.black54)),
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(50),
-                    borderSide: const BorderSide(width: 0, color: Colors.blue),
+    ScrollController scrollController = ScrollController();
+
+    return ValueListenableBuilder(
+      valueListenable: Hive.box<Athletes>('athletes').listenable(),
+      builder: (context, Box<Athletes> athletesBox, _) {
+        ///* this is where we filter data
+        var results = query.isEmpty
+            ? athletesBox.values.toList() // whole list
+            : athletesBox.values.where((element) {
+                return element.name.toLowerCase().contains(query) ||
+                    element.id.toString().contains(query) ||
+                    element.phoneNumber.toString().contains(query);
+              }).toList();
+
+        return results.isEmpty
+            ? const Center(child: CardText(text: 'No results found !'))
+            : Column(
+                children: [
+                  const SizedBox(height: 12),
+                  const DetailsCard(),
+                  Expanded(
+                    child: Scrollbar(
+                      controller: scrollController,
+                      thumbVisibility: true,
+                      child: ListView.builder(
+                        controller: scrollController,
+                        physics: BouncingScrollPhysics(),
+                        itemCount: results.length,
+                        itemBuilder: (context, index) {
+                          // passing as a custom list
+                          final Athletes athleteListItem = results[index];
+
+                          return athletesWidget(
+                              context, athleteListItem, index);
+                        },
+                      ),
+                    ),
                   ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(50),
-                    borderSide: const BorderSide(width: 0, color: Colors.blue),
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ));
+                ],
+              );
+      },
+    );
   }
 }
