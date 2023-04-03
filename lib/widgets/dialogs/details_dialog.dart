@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:fx3/model/boxes.dart';
 
 import '../../model/athletes.dart';
-import '../../screens/view_athletes_screen.dart';
+import '../../view_athletes_screen.dart';
 import 'edit_details_dialog.dart';
 
 Future<dynamic> detailsDialog(BuildContext context, Athletes athlete, index) {
@@ -19,8 +19,8 @@ Future<dynamic> detailsDialog(BuildContext context, Athletes athlete, index) {
                 CardText(text: "${"phone".tr()}: ${athlete.phoneNumber}"),
                 CardText(
                     text:
-                        "${"paymentDate".tr()}: ${athlete.paymentDate.day}/${athlete.paymentDate.month}/${athlete.paymentDate.year}"),
-                CardText(text: "${"paid".tr()}: ${athlete.paid}"),
+                        "${"paymentDate".tr()}: ${DateFormat.yMd("en-IN").format(DateTime.now())}"),
+                CardText(text: "${"paid".tr()}: ${athlete.paid} EGP"),
                 CardText(text: "${"coach".tr()}: ${athlete.withCoach}"),
               ],
             ),

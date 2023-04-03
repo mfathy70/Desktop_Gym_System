@@ -56,6 +56,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
         },
         controller: widget.controller,
         style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 18),
+        enabled: widget.isDate == true ? false : true,
         decoration: InputDecoration(
           filled: true,
           fillColor: Colors.black.withOpacity(0.09),

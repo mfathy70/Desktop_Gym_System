@@ -1,7 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
-import '../screens/view_athletes_screen.dart';
+import '../view_athletes_screen.dart';
 
 class DetailsCard extends StatelessWidget {
   const DetailsCard({

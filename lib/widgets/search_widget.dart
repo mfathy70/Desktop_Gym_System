@@ -1,7 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:fx3/model/athletes.dart';
-import 'package:fx3/screens/view_athletes_screen.dart';
+import 'package:fx3/view_athletes_screen.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 

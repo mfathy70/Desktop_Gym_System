@@ -3,20 +3,20 @@ import 'package:flutter/material.dart';
 
 import '../../model/athletes.dart';
 import '../../model/boxes.dart';
-import '../../screens/view_athletes_screen.dart';
+import '../../view_athletes_screen.dart';
 import '../custom_textfield.dart';
 
 Future<dynamic> editDetailsDialog(
     BuildContext context, Athletes athletes, index) {
-  TextEditingController _nameController =
+  TextEditingController nameController =
       TextEditingController(text: athletes.name);
-  TextEditingController _phoneController =
+  TextEditingController phoneController =
       TextEditingController(text: athletes.phoneNumber);
-  TextEditingController _dateController =
-      TextEditingController(text: athletes.paymentDate.toString());
-  TextEditingController _paidController =
+  TextEditingController dateController = TextEditingController(
+      text: DateFormat.yMd("en-IN").format(DateTime.now()));
+  TextEditingController paidController =
       TextEditingController(text: athletes.paid.toString());
-  TextEditingController _coachController =
+  TextEditingController coachController =
       TextEditingController(text: athletes.withCoach);
 
   return showDialog(
@@ -32,7 +32,7 @@ Future<dynamic> editDetailsDialog(
                     SizedBox(
                       width: MediaQuery.of(context).size.width / 2.96,
                       child: CustomTextField(
-                          controller: _nameController, label: athletes.name),
+                          controller: nameController, label: athletes.name),
                     ),
                   ],
                 ),
@@ -42,7 +42,7 @@ Future<dynamic> editDetailsDialog(
                     SizedBox(
                       width: MediaQuery.of(context).size.width / 3.5,
                       child: CustomTextField(
-                          controller: _phoneController,
+                          controller: phoneController,
                           label: athletes.phoneNumber),
                     ),
                   ],
@@ -53,9 +53,9 @@ Future<dynamic> editDetailsDialog(
                     SizedBox(
                       width: MediaQuery.of(context).size.width / 3.4,
                       child: CustomTextField(
-                          controller: _dateController,
+                          controller: dateController,
                           label:
-                              "${athletes.paymentDate.day} / ${athletes.paymentDate.month} / ${athletes.paymentDate.year}"),
+                              DateFormat.yMd("en-IN").format(DateTime.now())),
                     ),
                   ],
                 ),
@@ -65,7 +65,7 @@ Future<dynamic> editDetailsDialog(
                     SizedBox(
                       width: MediaQuery.of(context).size.width / 2.9,
                       child: CustomTextField(
-                          controller: _paidController,
+                          controller: paidController,
                           label: athletes.paid.toString()),
                     ),
                   ],
@@ -76,7 +76,7 @@ Future<dynamic> editDetailsDialog(
                     SizedBox(
                       width: MediaQuery.of(context).size.width / 3.35,
                       child: CustomTextField(
-                          controller: _coachController,
+                          controller: coachController,
                           label: athletes.withCoach),
                     ),
                   ],
@@ -99,12 +99,12 @@ Future<dynamic> editDetailsDialog(
               ElevatedButton(
                   onPressed: () {
                     final value = Athletes()
-                      ..name = _nameController.text
+                      ..name = nameController.text
                       ..id = athletes.id
-                      ..phoneNumber = _phoneController.text
-                      ..paid = int.parse(_paidController.text)
-                      ..paymentDate = DateTime.parse(_dateController.text)
-                      ..withCoach = _coachController.text;
+                      ..phoneNumber = phoneController.text
+                      ..paid = int.parse(paidController.text)
+                      ..paymentDate = DateTime.parse(dateController.text)
+                      ..withCoach = coachController.text;
                     final box = Boxes.getAthletes();
                     box
                         .putAt(index, value)

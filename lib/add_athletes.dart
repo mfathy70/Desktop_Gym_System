@@ -19,8 +19,8 @@ class AddAthletes extends StatefulWidget {
 class _AddAthletesState extends State<AddAthletes> {
   TextEditingController nameController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
-  TextEditingController paymentDateController =
-      TextEditingController(text: DateTime.now().toString());
+  TextEditingController paymentDateController = TextEditingController(
+      text: DateFormat.yMd("en-IN").format(DateTime.now()));
   TextEditingController paidController = TextEditingController();
   TextEditingController coachController = TextEditingController();
 
@@ -43,7 +43,7 @@ class _AddAthletesState extends State<AddAthletes> {
               addAthlete(
                   nameController.text,
                   phoneController.text,
-                  DateTime.now(),
+                  DateTime.parse(paymentDateController.text),
                   int.parse(paidController.text),
                   coachController.text);
               cleartextfields();

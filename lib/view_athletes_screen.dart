@@ -7,8 +7,8 @@ import 'package:fx3/widgets/dialogs/edit_details_dialog.dart';
 import 'package:fx3/widgets/search_widget.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import '../model/athletes.dart';
-import '../model/boxes.dart';
+import 'model/athletes.dart';
+import 'model/boxes.dart';
 
 class ViewAthletes extends StatefulWidget {
   const ViewAthletes({super.key});
@@ -105,7 +105,7 @@ Widget athletesWidget(BuildContext context, Athletes athlete, index) {
             ),
             SizedBox(
                 width: 120,
-                child: CardText(text: "${athlete.paid.toString()} EGP")),
+                child: CardText(text: "${athlete.paid.toString()}" "EGP")),
             SizedBox(width: 100, child: CardText(text: athlete.withCoach)),
           ],
         ),
