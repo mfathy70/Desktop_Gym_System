@@ -12,8 +12,8 @@ Future<dynamic> editDetailsDialog(
       TextEditingController(text: athletes.name);
   TextEditingController phoneController =
       TextEditingController(text: athletes.phoneNumber);
-  TextEditingController dateController = TextEditingController(
-      text: DateFormat.yMd("en-IN").format(DateTime.now()));
+  TextEditingController dateController =
+      TextEditingController(text: athletes.paymentDate.toString());
   TextEditingController paidController =
       TextEditingController(text: athletes.paid.toString());
   TextEditingController coachController =
@@ -84,18 +84,7 @@ Future<dynamic> editDetailsDialog(
               ],
             ),
             actions: [
-              OutlinedButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                style: OutlinedButton.styleFrom(
-                  foregroundColor: Colors.black54,
-                  side: const BorderSide(color: Colors.black26, width: 1.5),
-                  fixedSize: Size(MediaQuery.of(context).size.width / 15,
-                      MediaQuery.of(context).size.height / 20),
-                ),
-                child: Text("cancel".tr()),
-              ),
+              const CancelButton(text: "cancel"),
               ElevatedButton(
                   onPressed: () {
                     final value = Athletes()
@@ -112,11 +101,11 @@ Future<dynamic> editDetailsDialog(
                     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                         backgroundColor: Colors.blue,
                         content: Row(
-                          children: const [
-                            Icon(Icons.info_outline_rounded,
+                          children: [
+                            const Icon(Icons.info_outline_rounded,
                                 color: Colors.white),
-                            SizedBox(width: 10),
-                            Text("Details Updated")
+                            const SizedBox(width: 10),
+                            Text("detailsUpdated".tr())
                           ],
                         )));
                   },
@@ -128,4 +117,26 @@ Future<dynamic> editDetailsDialog(
                   child: Text("save".tr()))
             ],
           ));
+}
+
+class CancelButton extends StatelessWidget {
+  const CancelButton({super.key, required this.text});
+
+  final String text;
+
+  @override
+  Widget build(BuildContext context) {
+    return OutlinedButton(
+      onPressed: () {
+        Navigator.pop(context);
+      },
+      style: OutlinedButton.styleFrom(
+        foregroundColor: Colors.black54,
+        side: const BorderSide(color: Colors.black26, width: 1.5),
+        fixedSize: Size(MediaQuery.of(context).size.width / 15,
+            MediaQuery.of(context).size.height / 20),
+      ),
+      child: Text(text.tr()),
+    );
+  }
 }

@@ -1,11 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:fx3/widgets/custom_textfield.dart';
 import 'package:fx3/widgets/details_card.dart';
 import 'package:fx3/widgets/dialogs/details_dialog.dart';
-import 'package:fx3/widgets/dialogs/edit_details_dialog.dart';
-import 'package:fx3/widgets/search_widget.dart';
-import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'model/athletes.dart';
 import 'model/boxes.dart';
@@ -35,10 +31,10 @@ Widget buildContent(BuildContext context, List<Athletes> athletes) {
   ScrollController scrollController = ScrollController();
 
   if (athletes.isEmpty) {
-    return const Center(
+    return Center(
       child: Text(
-        'No athletes yet!',
-        style: TextStyle(fontSize: 24),
+        "noAthletes".tr(),
+        style: const TextStyle(fontSize: 24),
       ),
     );
   } else {
@@ -105,7 +101,7 @@ Widget athletesWidget(BuildContext context, Athletes athlete, index) {
             ),
             SizedBox(
                 width: 120,
-                child: CardText(text: "${athlete.paid.toString()}" "EGP")),
+                child: CardText(text: "${athlete.paid.toString()} EGP")),
             SizedBox(width: 100, child: CardText(text: athlete.withCoach)),
           ],
         ),

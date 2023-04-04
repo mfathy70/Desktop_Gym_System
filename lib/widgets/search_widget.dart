@@ -1,10 +1,7 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:fx3/model/athletes.dart';
 import 'package:fx3/view_athletes_screen.dart';
-import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-
 import 'details_card.dart';
 
 class SearchWidget extends SearchDelegate<Athletes> {
@@ -24,7 +21,7 @@ class SearchWidget extends SearchDelegate<Athletes> {
   List<Widget> buildActions(BuildContext context) {
     return [
       IconButton(
-        icon: Icon(Icons.clear),
+        icon: const Icon(Icons.clear),
         onPressed: () {
           query = '';
         },
@@ -35,9 +32,9 @@ class SearchWidget extends SearchDelegate<Athletes> {
   @override
   Widget buildLeading(BuildContext context) {
     return IconButton(
-      icon: Icon(Icons.arrow_back),
+      icon: const Icon(Icons.arrow_back),
       onPressed: () {
-        Navigator.of(context)..pop();
+        Navigator.of(context).pop();
       },
     );
   }
@@ -85,7 +82,6 @@ class SearchFinder extends StatelessWidget {
                       thumbVisibility: true,
                       child: ListView.builder(
                         controller: scrollController,
-                        physics: BouncingScrollPhysics(),
                         itemCount: results.length,
                         itemBuilder: (context, index) {
                           // passing as a custom list

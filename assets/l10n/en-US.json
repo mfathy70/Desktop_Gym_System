@@ -21,5 +21,12 @@
     "edit" : "Edit",
     "delete" : "Delete",
     "cancel" : "Cancle",
-    "save" : "Save"
+    "save" : "Save",
+    "confirmation" : "Confirmation",
+    "confirm" : "Confirm",
+    "added" : "Athlete added",
+    "close" : "Close",
+    "detailsUpdated" : "Athlete details updated",
+    "athleteDeleted" : "Athlete deleted",
+    "noAthletes" : "No Athletes yet !"
 }

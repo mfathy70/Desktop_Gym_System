@@ -1,6 +1,4 @@
-import 'dart:ffi';
 import 'package:hive/hive.dart';
-
 part 'athletes.g.dart';
 
 @HiveType(typeId: 0)

@@ -1,11 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:fx3/model/athletes.dart';
-import 'package:fx3/model/boxes.dart';
 import 'package:fx3/restart.dart';
 import 'package:fx3/view_athletes_screen.dart';
-import 'package:hive_flutter/hive_flutter.dart';
-
 import '../add_athletes.dart';
 import '../widgets/search_widget.dart';
 
@@ -86,7 +82,6 @@ class _HomeScreenState extends State<HomeScreen> {
             RestartWidget.restartApp(context);
           });
         }
-        ;
       },
     );
   }

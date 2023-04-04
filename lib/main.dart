@@ -4,7 +4,6 @@ import 'package:fx3/model/athletes.dart';
 import 'package:fx3/provider/language_provider.dart';
 import 'package:fx3/provider/search_provider.dart';
 import 'package:fx3/restart.dart';
-import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:provider/provider.dart';
 import 'screens/home_screen.dart';

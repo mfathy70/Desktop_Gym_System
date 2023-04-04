@@ -45,11 +45,11 @@ Future<dynamic> detailsDialog(BuildContext context, Athletes athlete, index) {
                     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                         backgroundColor: Colors.blue,
                         content: Row(
-                          children: const [
-                            Icon(Icons.info_outline_rounded,
+                          children: [
+                            const Icon(Icons.info_outline_rounded,
                                 color: Colors.white),
-                            SizedBox(width: 10),
-                            Text("Athlete Deleted")
+                            const SizedBox(width: 10),
+                            Text("athleteDeleted".tr())
                           ],
                         )));
                   },

@@ -1,11 +1,9 @@
-import 'dart:math';
-
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fx3/model/athletes.dart';
+import 'package:fx3/widgets/dialogs/confirm_dialog.dart';
 import 'package:nanoid/async.dart';
-
 import 'widgets/custom_textfield.dart';
 import 'model/boxes.dart';
 
@@ -41,9 +39,10 @@ class _AddAthletesState extends State<AddAthletes> {
           if (event.isKeyPressed(LogicalKeyboardKey.enter)) {
             if (_formKey.currentState!.validate()) {
               addAthlete(
+                  context,
                   nameController.text,
                   phoneController.text,
-                  DateTime.parse(paymentDateController.text),
+                  DateTime.now(),
                   int.parse(paidController.text),
                   coachController.text);
               cleartextfields();
@@ -107,6 +106,7 @@ class _AddAthletesState extends State<AddAthletes> {
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
                           addAthlete(
+                              context,
                               nameController.text,
                               phoneController.text,
                               DateTime.now(),
@@ -136,14 +136,13 @@ class _AddAthletesState extends State<AddAthletes> {
   void cleartextfields() {
     nameController.clear();
     phoneController.clear();
-    paymentDateController.clear();
     paidController.clear();
     coachController.clear();
   }
 }
 
-Future addAthlete(String name, String phone, DateTime paymentDate, int paid,
-    String coach) async {
+Future addAthlete(BuildContext context, String name, String phone,
+    DateTime paymentDate, int paid, String coach) async {
   late int id;
   await customAlphabet('1234567890', 6).then((value) => id = int.parse(value));
 
@@ -156,5 +155,6 @@ Future addAthlete(String name, String phone, DateTime paymentDate, int paid,
     ..withCoach = coach;
 
   final box = Boxes.getAthletes();
-  box.add(athlete);
+  box.add(athlete).then((value) => confirmDialog(context, id, name, phone,
+      paymentDate.toString(), paid.toString(), coach));
 }

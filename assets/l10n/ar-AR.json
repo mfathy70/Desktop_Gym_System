@@ -21,6 +21,13 @@
     "edit" : "تعديل",
     "delete" : "حذف",
     "cancel" : "الغاء",
-    "save" : "حفظ"
+    "save" : "حفظ",
+    "confirmation" : "تأكيد",
+    "confirm" : "تأكيد",
+    "added" : "تم اضافة اللاعب",
+    "close" : "اغلاق",
+    "detailsUpdated" : "تم تعديل تفاصيل اللاعب",
+    "athleteDeleted" : "تم حذف اللاعب",
+    "noAthletes" : "لا يوجد لاعبين حاليا !"
 
 }
